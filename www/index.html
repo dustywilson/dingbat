@@ -1,0 +1,35 @@
+<html>
+<head>
+  <title>Dingbat</title>
+  <script type="text/javascript" src="/gotalk/gotalk.js"></script>
+  <script>
+    gotalk.handle('greet', function (params, result) {
+      result({ greeting: 'Hello ' + params.name });
+    });
+
+    var s = gotalk.connection().on('open', function () {
+      s.request("person.create", {
+        firstName: "Fred",
+        lastName:  "Flintstone"
+      }, function (err, result) {
+        if (err) return console.error('create failed:', err);
+        console.log('create result:', result);
+
+        s.request("person.get", {ID:result.ID}, function (err, result) {
+          if (err) return console.error('echo failed:', err);
+          console.log('echo result:', result);
+        });
+      });
+    }).on('close', function (err) {
+      if (err.isGotalkProtocolError) return console.error(err);
+    })
+
+    gotalk.handleNotification('connection.id', function(id) {
+      console.log('connection.id:', id); // why would the client need this?  not a cookie.
+    });
+  </script>
+</head>
+<body>
+  <h1>Dingbat</h1>
+</body>
+</html>
