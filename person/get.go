@@ -5,6 +5,7 @@ import (
 
 	"gopkg.in/mgo.v2/bson"
 
+	"github.com/dustywilson/dingbat/client"
 	"github.com/rsms/gotalk"
 )
 
@@ -18,7 +19,8 @@ type GetRequest struct {
 }
 
 func get(s *gotalk.Sock, id bson.ObjectId) (*Person, error) {
-	fmt.Printf("GETREQUEST: [%+v] [%+v]\n", s.UserData, id)
+	c := client.SockClient(s)
+	fmt.Printf("GETREQUEST: [%+v] [%+v]\n", c, id)
 	p := new(Person)
 	err := coll.FindId(id).One(&p)
 	if err != nil {

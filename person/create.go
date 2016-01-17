@@ -3,6 +3,7 @@ package person
 import (
 	"fmt"
 
+	"github.com/dustywilson/dingbat/client"
 	"github.com/dustywilson/dingbat/db"
 	"github.com/rsms/gotalk"
 )
@@ -12,7 +13,8 @@ func init() {
 }
 
 func create(s *gotalk.Sock, r *Person) (*Person, error) {
-	fmt.Printf("CREATEREQUEST: [%+v] [%+v]\n", s.UserData, r)
+	c := client.SockClient(s)
+	fmt.Printf("CREATEREQUEST: [%+v] [%+v]\n", c, r)
 
 	r.ID = db.NewObjectID()
 
