@@ -1,0 +1,11 @@
+#content {
+  display: none;
+}
+
+body.loggedin #splash {
+  display: none;
+}
+
+body.loggedin #content {
+  display: block;
+}
