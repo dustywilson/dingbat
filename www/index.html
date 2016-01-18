@@ -9,12 +9,26 @@
   <link rel="stylesheet" type="text/css" href="/core.css" />
 </head>
 <body>
-  <div id="splash">
-    <div class="title">Dingbat</div>
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  <div id="blocker"></div>
+  <div id="topbar">
+    <a id="logo" href="#" onclick="logoClick()">Dingbat</a>
+    <a class="item" href="#" onclick="signOut()">Sign Out</a>
   </div>
   <div id="content">
-    <a href="#" onclick="signOut()">SIGN OUT</a>
+    <h1>content</h1>
+  </div>
+  <div id="disconnected" class="messagebox">
+    <div class="title">Dingbat: Not connected</div>
+    <p>Not connected to the Dingbat service.</p>
+    <p>Please verify that your Internet connection is operating correctly.</p>
+    <p>It's possible that the Dingbat service is down.</p>
+    <p>This message will automatically go away when the service is available again.</p>
+  </div>
+  <div id="splash" class="messagebox">
+    <div class="title">Dingbat</div>
+    <div class="centerfill">
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    </div>
   </div>
 </body>
 </html>

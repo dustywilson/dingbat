@@ -20,7 +20,7 @@ type GetRequest struct {
 
 func get(s *gotalk.Sock, id bson.ObjectId) (*Person, error) {
 	c := client.SockClient(s)
-	fmt.Printf("GETREQUEST: [%+v] [%+v]\n", c, id)
+	fmt.Printf("GETREQUEST: [%s] [%+v] [%+v]\n", c.GoogleEmail, c, id)
 	p := new(Person)
 	err := coll.FindId(id).One(&p)
 	if err != nil {

@@ -21,7 +21,7 @@ var oa2 *oauth2.Service
 type Client struct {
 	valid               bool
 	ID                  uuid.UUID
-	lastSeen            time.Time
+	LastSeen            time.Time
 	googleToken         *oauth2.Tokeninfo
 	GoogleUserID        string
 	GoogleEmail         string
@@ -62,7 +62,7 @@ func NewClient() *Client {
 	c := &Client{
 		valid:    true,
 		ID:       uuid.NewV4(),
-		lastSeen: time.Now(),
+		LastSeen: time.Now(),
 	}
 
 	clients.clients[c.ID.String()] = c
@@ -112,7 +112,12 @@ func sessionLogoutGoogle(s *gotalk.Sock, _ interface{}) error {
 	return nil
 }
 
-// Touch a client to update its lastSeen value
+// Touch a client to update its LastSeen value
 func (c *Client) Touch() {
-	c.lastSeen = time.Now()
+	c.LastSeen = time.Now()
+}
+
+// IsValid returns whether or not the Client is valid (not expired, invalidated)
+func (c *Client) IsValid() bool {
+	return c.valid
 }

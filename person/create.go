@@ -14,7 +14,7 @@ func init() {
 
 func create(s *gotalk.Sock, r *Person) (*Person, error) {
 	c := client.SockClient(s)
-	fmt.Printf("CREATEREQUEST: [%+v] [%+v]\n", c, r)
+	fmt.Printf("CREATEREQUEST: [%s] [%+v] [%+v]\n", c.GoogleEmail, c, r)
 
 	r.ID = db.NewObjectID()
 
